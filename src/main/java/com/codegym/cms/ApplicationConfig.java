@@ -3,7 +3,7 @@ package com.codegym.cms;
 import com.codegym.cms.repository.CustomerRepository;
 import com.codegym.cms.repository.impl.CustomerRepositoryImpl;
 import com.codegym.cms.service.CustomerService;
-import com.codegym.cms.service.impl.CustomerServiceImpl;
+import com.codegym.cms.service.impl.CustomerServiecImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -40,13 +40,13 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public CustomerRepository customerRepository() {
+    public CustomerRepository customerRepository(){
         return new CustomerRepositoryImpl();
     }
 
     @Bean
-    public CustomerService customerService() {
-        return new CustomerServiceImpl();
+    public CustomerService customerService(){
+        return new CustomerServiecImpl();
     }
 
     //JPA configuration
@@ -70,17 +70,17 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/cms");
-        dataSource.setUsername("root");
-        dataSource.setPassword("Mc11041992$");
+        dataSource.setUsername( "root" );
+        dataSource.setPassword( "Mc11041992$" );
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
